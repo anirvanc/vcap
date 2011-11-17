@@ -83,6 +83,11 @@ runtimes:
     version: 2.6.5
     version_flag: '--version'
     environment:
+  haskell:
+    executable: /usr/bin/runhaskell
+    version: 6.12.1
+    version_flag: '--version'
+    environment:
 
 # Used for /healthz and /vars endpoints. If not provided random
 # values will be generated on component start. Uncomment to use
