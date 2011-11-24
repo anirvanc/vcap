@@ -313,12 +313,34 @@ if [[ $DEA == true || $ALL == true ]]; then
         ./configure --prefix /var/vcap/runtimes/erlang-$ERLANG_VERSION
         make
         make install
+        cd ..
     fi
 
-    if [[$PLATFORM == 'Linux']]; then
-		apt-get install haskell-platform -y
-		cabal install happstack
-	fi
+    HASKEL_PLATFORM_VERSION=2010.1.0.0
+
+    if [ ! -d "/var/vcap/runtimes/haskell-platform-$HASKELL_PLATFORM_VERSION" ]; then
+        if [[ $PLATFORM == 'Linux' ]]; then
+            apt-get -qqy install ghc6 ghc6-prof ghc6-doc haddock libglut3-dev libedit-dev zlib1g-dev libbsd-dev libgmp3-dev freeglut3-dev happy alex cabal-install
+        elif [[ $PLATFORM == 'MacOSX' ]]; then
+            echo -e "\033[31mFIXME: Install MacOSX dependencies \033[0m"
+        fi
+
+        wget http://hackage.haskell.org/platform/$HASKEL_PLATFORM_VERSION2/haskell-platform-$HASKELL_PLATFORM_VERSION.tar.gz
+        tar zxvf haskell-platform-$HASKELL_PLATFORM_VERSION.tar.gz
+        cd haskell-platform-$HASKELL_PLATFORM_VERSION
+
+        ./configure --prefix /var/vcap/runtimes/haskell-platform-$HASKELL_PLATFORM_VERSION
+        make && make install
+        cd ..
+        cabal update
+        cabal install cabal-install
+        cabal install happstack
+    fi
+
+#    if [[$PLATFORM == 'Linux']]; then
+#		apt-get install haskell-platform -y
+#		cabal install happstack
+#	fi
 	
     popd
 
@@ -348,7 +370,8 @@ if [[ $DEA == true || $ALL == true ]]; then
     echo ""
 
 	echo -e "\nHaskell should now be installed -->"
-    /usr/bin/ghc --version
+    runhaskell --version
+    ghc --version
     echo ""
 
 	echo -e "\nHappstack should now be installed -->"

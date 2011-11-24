@@ -84,7 +84,7 @@ runtimes:
     version_flag: '--version'
     environment:
   haskell:
-    executable: /usr/bin/runhaskell
+    executable: runhaskell
     version: 6.12.1
     version_flag: '--version'
     environment:
