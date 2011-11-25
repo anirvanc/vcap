@@ -1,10 +1,10 @@
 ---
 name: "happstack"
 runtimes:
-  - haskell:
-      version: '6.12.1'
-      description: 'The Glorious Glasgow Haskell Compilation System'
-      executable: /var/vcap/runtimes/haskell-6.12.1/bin/runhaskell
+  - "haskell":
+      version: "6.12.1"
+      description: "The Glorious Glasgow Haskell Compilation System"
+      executable: "runhaskell"
       default: true
 app_servers:
 detection:

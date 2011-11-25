@@ -160,7 +160,7 @@ runtimes:
   python26:
     version: 2.6.5
   haskell:
-    version: [6-7].*
+    version: "[6-7].*"
 
 # Used for /healthz and /vars endpoints. If not provided random
 # values will be generated on component start. Uncomment to use

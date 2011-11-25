@@ -559,7 +559,6 @@ class App < ActiveRecord::Base
     when "lift/1.0"
       self.framework = 'lift'
       self.runtime   = 'java'
-    end
     when "happstack/1.0"
       self.framework = 'happstack'
       self.runtime   = 'haskell'
